@@ -21,4 +21,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/usuarios', [UserController::class, 'index'])->name('usuario');
 Route::post('/crearusuario', [UserController::class, 'store'])->name('crearusuario');
 Route::put('/actualizarusuario/{id}', [UserController::class, 'update'])->name('actualizarusuario');
-Route::delete('/actualizarusuario/{id}', [UserController::class, 'destroy'])->name('eliminarrusuario');
+Route::delete('/eliminarusuario/{id}', [UserController::class, 'destroy'])->name('eliminarrusuario');
+
+
+Route::get('/bodegas', [BodegasController::class, 'index'])->name('bodega');
+Route::post('/crearbodega', [BodegasController::class, 'store'])->name('crearbodega');
+Route::put('/actualizarbodega/{id}', [BodegasController::class, 'update'])->name('actualizarbodega');
+Route::delete('/eliminarusuario/{id}', [BodegasController::class, 'destroy'])->name('eliminarrbodega');

@@ -18,8 +18,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/usuarios', [UserController::class, 'index'])->name('usuario');
-Route::post('/crearusuario', [UserController::class, 'store'])->name('crearusuario');
-Route::put('/actualizarusuario', [UserController::class, 'update'])->name('actualizarusuario');
-Route::delete('/actualizarusuario', [UserController::class, 'destroy'])->name('eliminarrusuario');
+
 

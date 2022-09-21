@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\bodega;
 
-class BodegasControler extends Controller
+class ProductosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +23,7 @@ class BodegasControler extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -35,13 +34,7 @@ class BodegasControler extends Controller
      */
     public function store(Request $request)
     {
-        $venta= new bodega();
-        $venta->idproduct[] = $request->idproduct;
-        $venta->subtotal = $request->subtotal;
-        $venta->total = $request->total;
-        $venta->iva=$request->iva;
-
-        $venta->save();
+        //
     }
 
     /**
@@ -75,7 +68,7 @@ class BodegasControler extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**

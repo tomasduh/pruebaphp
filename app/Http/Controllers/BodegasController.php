@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\bodega;
 
-class UserController extends Controller
+use App\Http\Controllers\MailController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+class BodegasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +17,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::all();
-        if(!$user){
-            echo("not users found");
+        $bodega = bodega::all();
+        if(!$bodega){
+            echo("not stores found");
         }else{
-        return $user;
+        return $bodega;
         }
     }
 
@@ -28,8 +31,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
-
+    {
     }
 
     /**
@@ -40,11 +42,11 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user= new User();
-        $user->name = $request->username;
-        $user->foto = $request->foto;
-        $user->estado = $request->estado;
-        $user->save();
+        $bodega= new bodega();
+        $bodega->name = $request->name;
+        $bodega->id_responsable = $request->responsable;
+        $bodega->estado = $request->estado;
+        $bodega->save();
     }
 
     /**
@@ -55,7 +57,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-
+        //
     }
 
     /**
@@ -66,6 +68,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        //
     }
 
     /**
@@ -77,17 +80,16 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-        if(!$user){
-            echo("user not found");
+        $bodega = bodega::findOrFail($id);
+        if(!$bodega){
+            echo("store not found");
         }else{
-            $user->name = $request->username;
-            $user->foto = $request->foto;
-            $user->estado = $request->estado;
-            $user->save();
+            $bodega->name = $request->name;
+            $bodega->id_responsable = $request->responsable;
+            $bodega->estado = $request->estado;
+            $bodega->save();
         }
-        return $user;
-
+        return $bodega;
     }
 
     /**
@@ -98,11 +100,18 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
-        if(!$user){
-            echo("user not found");
+        $cantidad=DB::select(('SELECT cantidad FROM `inventarios` as i
+        INNER JOIN bodegas as b
+        on i.id_bodega=b.id
+        WHERE b.name='+$id+''));
+        $bodega = bodega::findOrFail($id);
+        if(!$bodega){
+            echo("store not found");
+        }elseif($cantidad==0){
+            return [MailController::class, 'sendEmail'];
+            $bodega->delete();
         }else{
-        $user->delete();
+            echo("cantidad mayor a 0 no se puede borrar");
         }
     }
 }
