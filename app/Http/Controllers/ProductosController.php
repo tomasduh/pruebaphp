@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductosController extends Controller
 {
@@ -13,7 +15,9 @@ class ProductosController extends Controller
      */
     public function index()
     {
-        //
+        $productos = DB::table('productos')->orderByDesc('cantidad')->simplePaginate(5);
+        return $productos;
+        
     }
 
     /**
@@ -34,7 +38,11 @@ class ProductosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $producto= new producto();
+        $producto->name = $request->name;
+        $producto->descripcion = $request->descripcion;
+        $producto->estado = $request->estado;
+        $producto->save();
     }
 
     /**
