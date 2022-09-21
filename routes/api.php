@@ -28,3 +28,6 @@ Route::get('/bodegas', [BodegasController::class, 'index'])->name('bodega');
 Route::post('/crearbodega', [BodegasController::class, 'store'])->name('crearbodega');
 Route::put('/actualizarbodega/{id}', [BodegasController::class, 'update'])->name('actualizarbodega');
 Route::delete('/eliminarusuario/{id}', [BodegasController::class, 'destroy'])->name('eliminarrbodega');
+
+Route::get('/productos', [ProductosController::class, 'index'])->name('producto');
+Route::post('/crearproductos', [ProductosController::class, 'store'])->name('crearproducto');
