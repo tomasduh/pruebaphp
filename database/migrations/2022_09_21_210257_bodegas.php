@@ -18,7 +18,7 @@ class Bodegas extends Migration
             $table->string('name');
             $table->string('estado');
             $table->unsignedBigInteger('id_responsable');
-            $table->foreign('id_responsable')->references('id')->on('usuarios');
+            $table->foreign('id_responsable')->references('id')->on('users');
             $table->timestamps();
         });
     }
