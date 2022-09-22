@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\BodegasController;
+use App\Http\Controllers\ProductosController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,7 +30,7 @@ Route::delete('/eliminarusuario/{id}', [UserController::class, 'destroy'])->name
 Route::get('/bodegas', [BodegasController::class, 'index'])->name('bodega');
 Route::post('/crearbodega', [BodegasController::class, 'store'])->name('crearbodega');
 Route::put('/actualizarbodega/{id}', [BodegasController::class, 'update'])->name('actualizarbodega');
-Route::delete('/eliminarusuario/{id}', [BodegasController::class, 'destroy'])->name('eliminarrbodega');
+Route::delete('/eliminarbodega/{id}', [BodegasController::class, 'destroy'])->name('eliminarrbodega');
 
 Route::get('/productos', [ProductosController::class, 'index'])->name('producto');
 Route::post('/crearproductos', [ProductosController::class, 'store'])->name('crearproducto');

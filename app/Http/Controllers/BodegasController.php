@@ -103,7 +103,7 @@ class BodegasController extends Controller
         $cantidad=DB::select(('SELECT cantidad FROM `inventarios` as i
         INNER JOIN bodegas as b
         on i.id_bodega=b.id
-        WHERE b.name='+$id+''));
+        WHERE b.id="+$id+"'));
         $bodega = bodega::findOrFail($id);
         if(!$bodega){
             echo("store not found");

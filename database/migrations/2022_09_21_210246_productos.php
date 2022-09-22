@@ -15,7 +15,7 @@ class Productos extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('name', 30);
             $table->string('descripcion');
             $table->string('estado');
             $table->timestamps();

@@ -40,8 +40,10 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+
+        
         $user= new User();
-        $user->name = $request->username;
+        $user->name = $request->name;
         $user->foto = $request->foto;
         $user->estado = $request->estado;
         $user->save();
@@ -81,7 +83,7 @@ class UserController extends Controller
         if(!$user){
             echo("user not found");
         }else{
-            $user->name = $request->username;
+            $user->name = $request->name;
             $user->foto = $request->foto;
             $user->estado = $request->estado;
             $user->save();
@@ -98,7 +100,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         if(!$user){
             echo("user not found");
         }else{
